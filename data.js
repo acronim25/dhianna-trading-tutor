@@ -181,7 +181,7 @@ const lessons=[
     question:[
         "Ce înseamnă să fii LONG într-un trade?",
         "$500 cu 2x leverage vs $20 cu 50x leverage - aceeași expunere la piață?",
-        "Ai în cont $5000 și un trade activ cu $500 la 20x leverage. Cu cât trebuie să se miște piața împotriva ta să pierzi TOT contul?",
+        "Ai în cont $5000 (margin CROSS) și un trade activ cu $500 la 20x leverage. Cu cât trebuie să se miște piața împotriva ta să pierzi TOT contul de $5000?",
         "Ce este Open Interest?",
         "Ce se întâmplă dacă deschizi LONG cu 10x leverage și prețul scade 10%?",
         "Care este diferența principală dintre CEX și DEX?",
@@ -193,7 +193,7 @@ const lessons=[
     options:[
         ["Vinzi acum să cumperi mai ieftin mai târziu","Pariezi că prețul va crește","Nu riști nimic","Împrumuți bani de la exchange"],
         ["Da, aceeași expunere de $1000","Nu, sunt expuneri diferite","Da, dar cu risc diferit","Doar dacă piața e volatilă"],
-        ["5% împotriva","10% împotriva","1% împotriva","20% împotriva"],
+        ["5%","50%","10%","1%"],
         ["Total poziții deschise în futures","Comisionul de tranzacție","Volumul de tranzacționare","Numărul de traderi activi"],
         ["Pierzi 10% din capital","Pierzi tot (liquidated)","Primești bani înapoi","Se închide automat la 5%"],
         ["CEX are comisioane mai mari","DEX e centralizat","CEX necesită KYC, DEX e anonim","DEX e doar pentru Bitcoin"],
@@ -202,7 +202,7 @@ const lessons=[
         ["Pariezi că prețul va scădea","Cumperi și aștepți creșterea","Nu riști nimic","Ești protejat de platformă"],
         ["Câștigă cât mai mult posibil","Risc Managementul e totul","Evită pierderile cu orice preț","Folosește leverage maxim"]
     ],
-    correct:[1,0,0,0,1,2,2,1,0,1]
+    correct:[1,0,1,0,1,2,2,1,0,1]
 }},
 {id:2,title:"Candlesticks și Chart-uri",shortTitle:"Candlesticks",content:`
 <h2>🕯️ Candlesticks: Limbajul Prețului</h2>
