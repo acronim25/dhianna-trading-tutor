@@ -204,19 +204,294 @@ const lessons=[
     ],
     correct:[1,0,1,0,1,2,2,1,0,1]
 }},
-{id:2,title:"Candlesticks și Chart-uri",shortTitle:"Candlesticks",content:`
-<h2>🕯️ Candlesticks: Limbajul Prețului</h2>
-<p>Chart-urile sunt ca EKG-ul pieței. Îți arată pulsul, ritmul, problemele.</p>
-<h3>🎂 Structura Unui Candlestick</h3>
-<ul><li><strong>Wick (Fitilul)</strong> = Cel mai înalt și cel mai jos preț în acea perioadă</li><li><strong>Body (Corpul)</strong> = Prețul de deschidere vs prețul de închidere</li></ul>
-<div class="highlight-box"><strong>🟢 Candle Verde (Bullish):</strong> Corpul = Prețul a crescut<br><strong>🔴 Candle Roșu (Bearish):</strong> Corpul = Prețul a scăzut</div>
-<h3>📊 Timeframes (Perioade de Timp)</h3>
-<ul><li><strong>1m/5m</strong> = Scalping - foarte volatil, nu pentru începători</li><li><strong>15m/1H</strong> = Intraday</li><li><strong>4H/Daily</strong> = Swing trading - RECOMANDAT pentru începători</li><li><strong>Weekly/Monthly</strong> = Long-term investing</li></ul>
-<div class="tip-box"><strong>💡 Regula lui Alex:</strong> Verifică MULTIPLE timeframes! Un setup care arată bine pe 1H, dar arată groaznic pe Daily, probabil e o capcană.</div>
-<h3>🔨 Pattern-uri de Bază</h3>
-<ul><li><strong>Doji</strong> = Corp mic, wicks lungi. Indecizie pe piață. Potențial reversal.</li><li><strong>Hammer</strong> = Wick jos lung, corp mic sus. Posibil bottom.</li><li><strong>Engulfing</strong> = Un candle mare "înghite" candle-ul anterior. Semnal puternic.</li></ul>
-<div class="warning-box"><strong>⚠️ Nu te baza DOAR pe candlestick-uri!</strong> Sunt doar O unealtă din trusa ta.</div>
-`,quiz:{question:"Ce indică un candle cu wick lung în jos și corp mic în partea de sus?",options:["Creștere puternică","Posibil bottom","Timp de vânzare","Nimic special"],correct:1}},
+{id:2,title:"Anatomia Pieței: Candlesticks, Pattern-uri și Indicatori",shortTitle:"Candlesticks",content:`
+<h2>🕯️ Candlesticks: EKG-ul Pieței</h2>
+
+<p>Dacă în Lecția 1 am învățat "ce" este trading-ul, acum învățăm să <strong>citim</strong> piața. Candlesticks sunt alfabetul traderului - fiecare bară spune o poveste.</p>
+
+<div class="highlight-box">
+<strong>🏥 ANALOGIE MEDICALĂ:</strong><br><br>
+Gândește-te la candlesticks ca la un <strong>ECG (electrocardiogramă)</strong>:<br>
+• Fiecare "bătăi" (candle) arată pulsul pieței<br>
+• Pattern-urile sunt ca aritmiile - semnalează probleme sau recuperare<br>
+• Volumul = presiunea sângelui - cât de "puternic" este semnalul<br>
+• Un medic bun (trader) citește ECG-ul în context, nu izolat
+</div>
+
+<h3>🎂 Anatomia Unei Candlestick</h3>
+
+<p>O candlestick reprezintă o perioadă de timp (1 minut, 1 oră, 1 zi) și arată 4 prețuri esențiale:</p>
+
+<div class="highlight-box">
+<strong>Cei 4 "Vital Signs" ai Pieței:</strong><br><br>
+
+<strong>1. OPEN (Deschidere)</strong> = Prețul la începutul perioadei<br>
+→ Ca tensiunea arterială sistolică - valoarea de start<br><br>
+
+<strong>2. HIGH (Maxim)</strong> = Cel mai înalt preț în perioadă<br>
+→ Vârful puterii cumpărătorilor - cât de sus au împins prețul<br><br>
+
+<strong>3. LOW (Minim)</strong> = Cel mai jos preț în perioadă<br>
+→ Vârful puterii vânzătorilor - cât de jos au împins prețul<br><br>
+
+<strong>4. CLOSE (Închidere)</strong> = Prețul la finalul perioadei<br>
+→ Cel mai important! Arată cine a câștigat bătălia
+</div>
+
+<h4>🔥 Wick (Fitilul) - "Umbrele" Pieței</h4>
+
+<p><strong>Wick sus</strong> = Cumpărătorii au încercat să urce, dar vânzătorii i-au împins înapoi</p>
+<p><strong>Wick jos</strong> = Vânzătorii au încercat să coboare, dar cumpărătorii i-au respingut</p>
+
+<div class="example-trade win">
+<h4>📗 EXEMPLU: Hammer (Ciocanul)</h4>
+<p>Candle cu <strong>wick jos foarte lung</strong> și corp mic sus.</p>
+<p><strong>Ce spune:</strong> Vânzătorii au încercat masiv să coboare prețul (wick jos lung), dar cumpărătorii au revenit puternic și au închis aproape de maxim.</p>
+<p><strong>Analogie medicală:</strong> Pacientul a avut o criză (scădere bruscă), dar organismul a recuperat. Posibil semn de stabilizare.</p>
+<p><strong>Trade:</strong> Buy la închidere sau la retestarea zonei.</p>
+</div>
+
+<h4>🟢🔴 Culoarea - Cine a Câștigat Bătălia</h4>
+
+<div class="highlight-box">
+<strong>🟢 VERDE (Bullish Candle):</strong><br>
+Close > Open = Cumpărătorii au câștigat<br>
+Corpul verde = zonă de consolidare bullish<br><br>
+
+<strong>🔴 ROȘU (Bearish Candle):</strong><br>
+Close < Open = Vânzătorii au câștigat<br>
+Corpul roșu = zonă de consolidare bearish
+</div>
+
+<h3>⏱️ Timeframes - Ritmul Inimii Pieței</h3>
+
+<p>Ca un ECG care poate fi monitorizat pe diferite viteze, și piețele au "viteze" diferite:</p>
+
+<div class="highlight-box">
+<strong>Timeframes și Utilizarea Lor:</strong><br><br>
+
+<strong>🚀 1m/5m (Scalping)</strong><br>
+→ Ca monitorizarea ECG în timp real în ATI<br>
+→ Foarte volatil, zgomot mare, NU pentru începători<br>
+→ Doar pentru traderi cu experiență și nervi de oțel<br><br>
+
+<strong>⚡ 15m/1H (Intraday)</strong><br>
+→ Ca un ECG pe 24h<br>
+→ Trades în aceeași zi, sesiuni scurte<br>
+→ Bun pentru day trading<br><br>
+
+<strong>📊 4H/Daily (Swing Trading) ✅ RECOMANDAT</strong><br>
+→ Ca un ECG săptămânal<br>
+→ Elimină mult din zgomot, arată trendul real<br>
+→ Ideal pentru începători<br><br>
+
+<strong>📈 Weekly/Monthly (Long-term)</strong><br>
+→ Ca un ECG anual<br>
+→ Pentru investitori, nu traderi activi
+</div>
+
+<div class="tip-box">
+<strong>💡 Regula de Aur a Timeframe-urilor:</strong><br><br>
+<strong>Analizează MULTIPLE timeframes!</strong> Un setup care arată perfect pe 1H dar e groaznic pe Daily, e o capcană. Întotdeauna verifică timeframe-ul mai mare înainte să intri.
+</div>
+
+<h3>🔨 Pattern-uri Esențiale - "Diagnostice" Pieței</h3>
+
+<div class="highlight-box">
+<strong>🏥 Ca un medic care recunoaște simptomele, un trader recunoaște pattern-urile.</strong> Nu există "garantă", doar probabilități mai mari.
+</div>
+
+<h4>1️⃣ DOJI - Indecizia Pieței</h4>
+
+<p><strong>Aspect:</strong> Corp mic sau inexistent, wicks lungi de ambele părți.</p>
+<p><strong>Ce spune:</strong> Echilibru perfect între cumpărători și vânzători. Piața "hesită".</p>
+<p><strong>Analogie medicală:</strong> Asistolă momentană - inima încă bate, dar nu știi în ce direcție va merge.</p>
+<p><strong>Trade:</strong> Așteaptă confirmare (candle-ul următor). Nu tranzacționa împotriva trend-ului!</p>
+
+<div class="example-trade win">
+<h4>📗 Exemplu: Doji la Top</h4>
+<p>BTC a crescut 20% în 3 zile. Apare un Doji pe Daily. A doua zi, candle roșu mare. <strong>Semnal de epuizare bullish.</strong> Am short-at cu SL deasupra Doji-ului. BTC a căzut 15% în următoarele zile.</p>
+</div>
+
+<h4>2️⃣ ENGULFING - Schimbarea Puterii</h4>
+
+<p><strong>Bullish Engulfing:</strong> Candle roșu mic, urmat de candle verde MARE care "înghite" complet candle-ul anterior.</p>
+<p><strong>Ce spune:</strong> Cumpărătorii au preluat complet controlul.</p>
+
+<p><strong>Bearish Engulfing:</strong> Candle verde mic, urmat de candle roșu MARE.</p>
+<p><strong>Ce spune:</strong> Vânzătorii au preluat controlul.</p>
+
+<div class="example-trade win">
+<h4>📗 Exemplu: Bullish Engulfing la Support</h4>
+<p>ETH testează support $3,000 (testat de 3 ori anterior). Apare Bullish Engulfing pe 4H cu <strong>volum exploziv</strong>. Long la închidere. ETH sare la $3,400 în 2 zile.</p>
+</div>
+
+<h4>3️⃣ MORNING STAR / EVENING STAR - Trezirea sau Adormirea</h4>
+
+<p><strong>Morning Star (3 candles):</strong> Roșu mare → Mică (oricare culoare) → Verde mare. Semnal de bottom.</p>
+<p><strong>Evening Star:</strong> Verde mare → Mică → Roșu mare. Semnal de top.</p>
+
+<h4>4️⃣ SHOOTING STAR - Obositul care Încearcă Să Urcă</h4>
+
+<p><strong>Aspect:</strong> Wick sus foarte lung, corp mic jos.</p>
+<p><strong>Ce spune:</strong> Cumpărătorii au încercat să urce, dar au eșuat. Vânzătorii au preluat.</p>
+
+<h3>📊 Indicatori Esențiali - Analizele de Sânge ale Pieței</h3>
+
+<div class="highlight-box">
+<strong>🏥 Ca un medic care folosește analize de sânge (hemoglobină, leucocite) pentru a confirma un diagnostic, traderul folosește indicatori pentru a confirma pattern-urile.</strong>
+</div>
+
+<h4>📈 RSI (Relative Strength Index) - 0-100</h4>
+
+<p>Măsoară viteza și magnitudinea mișcărilor de preț.</p>
+
+<div class="highlight-box">
+<strong>RSI > 70:</strong> Overbought (supra-cumpărat) - posibil pullback<br>
+<strong>RSI < 30:</strong> Oversold (supra-vândut) - posibil bounce<br>
+<strong>Divergență:</strong> Prețul face high nou, RSI nu = semnal de slăbiciune (ca un pacient care arată bine dar analizele sunt proaste)
+</div>
+
+<div class="warning-box">
+<strong>⚠️ Capcana RSI:</strong> În bull market puternic, RSI poate sta >70 săptămâni! Nu vinde doar pentru că RSI e "overbought". Contextul contează!
+</div>
+
+<h4>🌊 VOLUM - Presiunea Sângelui</h4>
+
+<p><strong>Cel mai important indicator!</strong> Confirmă sau infirmă mișcările.</p>
+
+<div class="highlight-box">
+<strong>Scenarii Volum:</strong><br><br>
+
+✅ <strong>Breakout + Volum Mare</strong> = Valid, probabil continuare<br>
+→ Ca o injecție cu substanță activă - are "putere"<br><br>
+
+❌ <strong>Breakout + Volum Mic</strong> = Fakeout, capcană<br>
+→ Ca un placebo - arată bine dar nu are "substanță"<br><br>
+
+⚠️ <strong>Rally cu Volum Scăzând</strong> = Slăbiciune<br>
+→ Ca un pacient care aleargă dar pulsul nu crește - ceva e în neregulă
+</div>
+
+<h4>📐 Moving Averages (MA) - Tendința Generală</h4>
+
+<p>Media prețului pe o perioadă. Netezește zgomotul.</p>
+
+<div class="highlight-box">
+<strong>SMA 200</strong> = Trend macro ("starea generală de sănătate")<br>
+<strong>SMA 50</strong> = Trend mediu ("evoluția pe termen mediu")<br>
+<strong>EMA 20</strong> = Trend scurt, reacționează mai rapid
+</div>
+
+<div class="example-trade win">
+<h4>📗 Golden Cross - Semnal de Viață Nouă</h4>
+<p>MA50 taie MA200 de jos în sus. Semnal bullish pe termen lung. BTC a avut Golden Cross în mai 2020 la $9,000. Un an mai târziu era la $64,000.</p>
+</div>
+
+<h3>🎯 Price Action - Arta de a Citi Fără Indicatori</h3>
+
+<p><strong>Price Action = Analiza prețului pur, fără indicatori.</strong> Doar candlesticks, support/resistance, trendlines.</p>
+
+<div class="highlight-box">
+<strong>🏥 Analogie medicală:</strong><br><br>
+Un medic experimentat poate diagnostica doar uitându-se la pacient (piele, ochi, comportament) înainte să vadă analizele. La fel, un trader price action poate "simți" piața fără indicatori.
+</div>
+
+<h3>🏔️ ATH (All Time High) & 🕳️ ATL (All Time Low)</h3>
+
+<div class="highlight-box">
+<strong>ATH (All Time High)</strong> = Cel mai înalt preț din istoria unui activ<br>
+→ Ca un record mondial - foarte greu de depășit, dar posibil<br>
+→ Psihologic important: "nu am mai fost aici"<br>
+→ FOMO extrem când se apropie<br><br>
+
+<strong>ATL (All Time Low)</strong> = Cel mai jos preț din istorie<br>
+→ Ca o stare critică - ar putea muri sau se poate recupera<br>
+→ Oportunitate sau capcană?
+</div>
+
+<div class="tip-box">
+<strong>💡 Trading la ATH:</strong> Fără resistance deasupra, prețul poate "zbura". Dar și cădea rapid dacă entuziasmul dispare. Folosește trailing stop!
+</div>
+
+<h3>📊 Indici Principali - Starea de Sănătate a Pieței</h3>
+
+<div class="highlight-box">
+<strong>🏥 Ca un medic care verifică presiunea arterială, temperatura și pulsul pentru a evalua starea generală, traderii urmăresc indici pentru sănătatea pieței.</strong>
+</div>
+
+<h4>😨😰 Fear & Greed Index (0-100)</h4>
+
+<p>Măsoară sentimentul pieței - bazat pe volatilitate, volum, social media, dominance, etc.</p>
+
+<div class="highlight-box">
+<strong>0-20: EXTREME FEAR 😰</strong><br>
+→ Toți panicați, vând tot<br>
+→ <strong>OPORTUNITATE DE CUMPĂRARE</strong> ("cumpără când e sânge pe străzi")<br><br>
+
+<strong>20-40: FEAR 😨</strong><br>
+→ Precauție, piață bearish<br>
+→ Acumulare prudentă<br><br>
+
+<strong>40-60: NEUTRAL 😐</strong><br>
+→ Piață echilibrată<br>
+→ Așteaptă direcția<br><br>
+
+<strong>60-80: GREED 😏</strong><br>
+→ Optimism, piață bullish<br>
+→ Profit taking prudent<br><br>
+
+<strong>80-100: EXTREME GREED 🤪</strong><br>
+→ Euforie, toți cumpără<br>
+→ <strong>VINDE! VINDE! VINDE!</strong> ("când portarul îți dă tips-uri de trading, e timpul să vinzi")
+</div>
+
+<div class="example-trade win">
+<h4>📗 Exemplu: Fear la Extreme în Martie 2020</h4>
+<p>COVID crash. Fear & Greed la <strong>5 (Extreme Fear)</strong>. BTC de la $8,000 la $3,800 în 2 zile. Am cumpărat la $4,200. Fear & Greed a urcat la 95 în decembrie 2020. BTC la $24,000. <strong>Profit 470%.</strong></p>
+</div>
+
+<h4>📈 Alți Indicatori Importanți:</h4>
+
+<ul>
+<li><strong>BTC Dominance</strong> = Cât % din totalul crypto e BTC. Scăzând = altcoin season.</li>
+<li><strong>Funding Rates</strong> = Cât plătesc long-urile vs short-urile. Extrem = reversal posibil.</li>
+<li><strong>Open Interest</strong> = Cât leverage e în piață. Prea mult = volatilitate iminentă.</li>
+</ul>
+
+<h3>🎯 Confluența - Când Toate Semnalele Se Aliniază</h3>
+
+<div class="highlight-box">
+<strong>🏥 Analogie medicală finală:</strong><br><br>
+Un pacient cu:<br>
+✅ Puls normal (trend sănătos)<br>
+✅ Tensiune bună (volum confirmat)<br>
+✅ Analize bune (RSI în zona bună)<br>
+✅ Fără simptome alarmante (fear index normal)<br>
+= <strong>Prognostic bun pentru intervenție</strong><br><br>
+
+La fel în trading - când <strong>mai mulți factori se aliniază</strong> (confluență), probabilitatea de succes crește exponențial.
+</div>
+
+<div class="example-trade win">
+<h4>📗 Exemplu Final: Trade Perfect cu Confluență</h4>
+<p><strong>Setup:</strong></p>
+<ul>
+<li>BTC la support $60k (testat 3x)</li>
+<li>RSI Daily = 28 (oversold)</li>
+<li>Volum exploziv la atingere support</li>
+<li>Fear & Greed = 20 (fear)</li>
+<li>Funding negativ extrem (toți panică pe short)</li>
+<li>Candle Hammer pe 4H</li>
+</ul>
+<p><strong>Rezultat:</strong> Long la $60,200. SL sub $59k. TP la $65k. BTC a ajuns la $67k în 5 zile. <strong>R:R 1:5. Profit 400% cu 5x leverage.</strong></p>
+</div>
+
+<div class="tip-box">
+<strong>💡 Lecția Finală:</strong><br><br>
+Nu există <strong>"certitudini"</strong> în trading, doar <strong>probabilități</strong>. Când ai confluență de factori, ai o <strong>șansă mai bună</strong> - dar managementul riscului rămâne #1.
+</div>
+`,quiz:{question:["Ce indică un candlestick Doji?","Ce înseamnă un breakout cu volum mare?","RSI peste 70 indică:","Ce este ATH?","Fear & Greed Index la 10 înseamnă:","Ce indică un Hammer (candlestick)?","Volum scăzând în timpul unui rally indică:","Ce este un Golden Cross?","Divergență bearish RSI înseamnă:","Confluența în trading înseamnă:"],options:[["Trend puternic bullish","Indecizie/echilibru","Confirmare de vânzare","Volum mare"],["Capcană/fakeout","Confirmare validă","Nu contează","Reversal iminent"],["Oversold - timp de cumpărare","Overbought - posibil pullback","Trend neutru","Volum crescut"],["All Time High - record istoric","All Time Low - minim istoric","Average Trading Hours","Asset Trading Hub"],["Extreme greed - vinzi","Extreme fear - cumperi","Neutral - aștepți","Bull market"],["Vânzători dominanți","Posibil bottom - cumpărători revin","Trend continuare","Indecizie"],["Trend sănătos","Slăbiciune/oboseală","Breakout iminent","Volum real"],["MA50 taie MA200 de sus","MA50 taie MA200 de jos","RSI peste 70","Volum maxim"],["Preț și RSI cresc împreună","Preț crește, RSI scade - slăbiciune","Preț scade, RSI crește","Confirmare trend"],["Un singur indicator","Mai mulți factori aliniați","Volum maxim","Fear & Greed 100"]],correct:[1,1,1,0,1,1,1,1,1,1]}},
 {id:3,title:"Support și Resistance",shortTitle:"S/R",content:`
 <h2>🧱 Support și Resistance</h2>
 <p>Cele mai importante concepte în technical analysis. Sunt ca "zidurile" pe care prețul le întâlnește.</p>
