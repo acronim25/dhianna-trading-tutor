@@ -1,15 +1,27 @@
 let current=1,completed=JSON.parse(localStorage.getItem('dtt_c')||'[]'),quizProgress=JSON.parse(localStorage.getItem('dtt_quiz')||'{}');
 const navEl=document.getElementById('lessonNav'),contentEl=document.getElementById('mainContent'),fill=document.getElementById('progressFill'),text=document.getElementById('progressText');
 
+// Discord Webhook pentru notificări
+const DISCORD_WEBHOOK='https://discord.com/api/webhooks/1471215105503920153/nsbwhEQOTKVHF1NOvCK6nErAgh95gacaJqhVYIBY2u3s-D5J2Ozu5XWgDYCpFHnIEWzO';
+
 // Capitole blocate - doar primul e deschis
 const UNLOCKED_LESSONS=[1];
 
 function init(){renderNav();load(current);updateP();}
 
+async function sendDiscordNotification(data){
+try{
+await fetch(DISCORD_WEBHOOK,{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify(data)
+});
+}catch(e){console.log('Webhook error:',e);}
+}
+
 function renderNav(){navEl.innerHTML=lessons.map(l=>{
 const done=completed.includes(l.id),active=current===l.id,unlocked=UNLOCKED_LESSONS.includes(l.id);
 if(!unlocked){
-// Locked lesson - show lock icon and SOON
 return`<button class="lesson-btn locked" disabled title="Disponibil în curând"><div class="lesson-number">Lecția ${l.id}</div><div class="lesson-title-short">🔒 ${l.shortTitle}</div><div style="font-size:0.65rem;color:#666;margin-top:4px;">SOON</div></button>`;
 }
 return`<button class="lesson-btn ${active?'active':''} ${done?'completed':''}" onclick="go(${l.id})"><div class="lesson-number">Lecția ${l.id}</div><div class="lesson-title-short">${l.shortTitle}</div></button>`;
@@ -23,11 +35,50 @@ const l=lessons.find(x=>x.id===id),prev=lessons.find(x=>x.id===id-1&&UNLOCKED_LE
 let quizHtml='';
 if(l.quiz){
 if(Array.isArray(l.quiz.question)){
-const saved=quizProgress[id]||{currentQ:0,answers:[],completed:false};
+const saved=quizProgress[id]||{currentQ:0,answers:[],completed:false,sentNotification:false};
 if(saved.completed){
 const correct=l.quiz.correct;
 let score=0;
 saved.answers.forEach((ans,idx)=>{if(ans===correct[idx])score++;});
+
+// Send Discord notification if not already sent
+if(!saved.sentNotification){
+const timestamp=new Date().toLocaleString('ro-RO');
+const details=l.quiz.question.map((q,idx)=>{
+const userAns=saved.answers[idx];
+const correctAns=correct[idx];
+const isCorrect=userAns===correctAns;
+return`**Î${idx+1}:** ${q.substring(0,80)}...\n✏️ Răspuns: ${l.quiz.options[idx][userAns]} ${isCorrect?'✅':'❌'}\n✓ Corect: ${l.quiz.options[idx][correctAns]}`;
+}).join('\n\n');
+
+sendDiscordNotification({
+content:'@everyone 🎯 **Dhianna a terminat Quiz-ul!**',
+embeds:[{
+title:`📚 ${l.title}`,
+description:`**Scor: ${score}/${l.quiz.question.length}** ${score>=7?'🎉 Excelent!':'📚 Mai studiază!'}`,
+color:score>=7?0x00ff88:0xff6600,
+fields:[
+{name:'✅ Corecte',value:`${score}`,inline:true},
+{name:'❌ Greșite',value:`${l.quiz.question.length-score}`,inline:true},
+{name:'📊 Procentaj',value:`${Math.round((score/l.quiz.question.length)*100)}%`,inline:true},
+{name:'🕐 Data',value:timestamp,inline:true}
+],
+footer:{text:'Dhianna Trading Tutor - Monitorizare Quiz'}
+}]
+});
+
+// Also send detailed answers as second message
+setTimeout(()=>{
+sendDiscordNotification({
+content:`📋 **Detalii Răspunsuri:**\n\n${details}`
+});
+},500);
+
+// Mark as sent
+quizProgress[id].sentNotification=true;
+localStorage.setItem('dtt_quiz',JSON.stringify(quizProgress));
+}
+
 quizHtml=`<div class="quiz-container"><h3>📝 Quiz Completat!</h3><div class="quiz-result ${score>=7?'pass':'fail'}">Scor: ${score}/${l.quiz.question.length} ${score>=7?'✅ Excelent!':'❶ Mai încearcă!'}</div><div style="margin-top:20px;">${l.quiz.question.map((q,idx)=>{
 const userAns=saved.answers[idx];
 const correctAns=correct[idx];
@@ -64,7 +115,7 @@ contentEl.innerHTML=`<article class="lesson-content">${l.content}${quizHtml}<div
 
 function answerQ(id,qIdx,ans){
 const l=lessons.find(x=>x.id===id);
-if(!quizProgress[id])quizProgress[id]={currentQ:0,answers:[],completed:false};
+if(!quizProgress[id])quizProgress[id]={currentQ:0,answers:[],completed:false,sentNotification:false};
 quizProgress[id].answers[qIdx]=ans;
 localStorage.setItem('dtt_quiz',JSON.stringify(quizProgress));
 load(id);
@@ -72,7 +123,7 @@ load(id);
 
 function nextQ(id){
 const l=lessons.find(x=>x.id===id);
-if(!quizProgress[id])quizProgress[id]={currentQ:0,answers:[],completed:false};
+if(!quizProgress[id])quizProgress[id]={currentQ:0,answers:[],completed:false,sentNotification:false};
 quizProgress[id].currentQ++;
 if(quizProgress[id].currentQ>=l.quiz.question.length){
 quizProgress[id].completed=true;
