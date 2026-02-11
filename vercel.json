@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "name": "dhianna-trading-tutor",
+  "builds": [{ "src": "index.html", "use": "@vercel/static" }]
+}
