@@ -1,31 +1,109 @@
-let current=1,completed=JSON.parse(localStorage.getItem('dtt_c')||'[]'),quiz=JSON.parse(localStorage.getItem('dtt_q')||'{}');
-const nav=document.getElementById('lessonNav'),content=document.getElementById('mainContent'),fill=document.getElementById('progressFill'),text=document.getElementById('progressText');
+let current=1,completed=JSON.parse(localStorage.getItem('dtt_c')||'[]'),quizProgress=JSON.parse(localStorage.getItem('dtt_quiz')||'{}');
+const navEl=document.getElementById('lessonNav'),contentEl=document.getElementById('mainContent'),fill=document.getElementById('progressFill'),text=document.getElementById('progressText');
+
 function init(){renderNav();load(current);updateP();}
-function renderNav(){nav.innerHTML=lessons.map(l=>{
-const d=completed.includes(l.id),a=current===l.id;
-return`<button class="lesson-btn ${a?'active':''} ${d?'completed':''}" onclick="go(${l.id})"><div class="lesson-number">Lecția ${l.id}</div><div class="lesson-title-short">${l.shortTitle}</div></button>`;
+
+function renderNav(){navEl.innerHTML=lessons.map(l=>{
+const done=completed.includes(l.id),active=current===l.id;
+return`<button class="lesson-btn ${active?'active':''} ${done?'completed':''}" onclick="go(${l.id})"><div class="lesson-number">Lecția ${l.id}</div><div class="lesson-title-short">${l.shortTitle}</div></button>`;
 }).join('');}
+
 function go(id){current=id;renderNav();load(id);window.scrollTo({top:0,behavior:'smooth'});}
+
 function load(id){
-const l=lessons.find(x=>x.id===id),p=lessons.find(x=>x.id===id-1),n=lessons.find(x=>x.id===id+1),d=completed.includes(id);
-content.innerHTML=`<article class="lesson-content">${l.content}${l.quiz?renderQ(l.quiz,id):''}<div class="nav-buttons"><button class="btn btn-secondary" ${!p?'disabled':''} onclick="go(${id-1})">← Anterioară</button><button class="btn btn-primary" id="doneBtn" ${d?'disabled':''} onclick="mark(${id})">${d?'✓ Completat':'Marchează Terminat'}</button><button class="btn btn-secondary" ${!n?'disabled':''} onclick="go(${id+1})">Următoare →</button></div></article>`;
+const l=lessons.find(x=>x.id===id),prev=lessons.find(x=>x.id===id-1),next=lessons.find(x=>x.id===id+1),done=completed.includes(id);
+let quizHtml='';
+if(l.quiz){
+if(Array.isArray(l.quiz.question)){
+// Multi-question quiz
+const saved=quizProgress[id]||{currentQ:0,answers:[],completed:false};
+if(saved.completed){
+// Show results
+const correct=l.quiz.correct;
+let score=0;
+saved.answers.forEach((ans,idx)=>{if(ans===correct[idx])score++;});
+quizHtml=`<div class="quiz-container"><h3>📝 Quiz Completat!</h3><div class="quiz-result ${score>=7?'pass':'fail'}">Scor: ${score}/${l.quiz.question.length} ${score>=7?'✅ Excelent!':'❶ Mai încearcă!'}</div><div style="margin-top:20px;">${l.quiz.question.map((q,idx)=>{
+const userAns=saved.answers[idx];
+const correctAns=correct[idx];
+const isCorrect=userAns===correctAns;
+return`<div style="margin:15px 0;padding:15px;background:${isCorrect?'rgba(0,255,136,0.1)':'rgba(255,0,68,0.1)'};border-left:4px solid ${isCorrect?'#00ff88':'#ff0044'};border-radius:0 8px 8px 0;"><strong>Întrebarea ${idx+1}:</strong> ${q}<br><span style="color:${isCorrect?'#00ff88':'#ff0044'}">Răspunsul tău: ${l.quiz.options[idx][userAns]} ${isCorrect?'✓':'✗'}</span><br><span style="color:#00ff88">Corect: ${l.quiz.options[idx][correctAns]}</span></div>`;
+}).join('')}<button class="btn btn-primary" onclick="resetQuiz(${id})" style="margin-top:20px;">Reia Quiz</button></div></div>`;
+}else{
+// Show current question
+const qIndex=saved.currentQ;
+const qText=l.quiz.question[qIndex];
+const opts=l.quiz.options[qIndex];
+const answered=saved.answers[qIndex]!==undefined;
+quizHtml=`<div class="quiz-container" id="quiz-${id}"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;"><h3>📝 Întrebarea ${qIndex+1}/${l.quiz.question.length}</h3><span style="color:var(--text-dim);font-size:0.9rem;">${qIndex+1} din ${l.quiz.question.length}</span></div><p class="quiz-question" style="font-size:1.2rem;margin-bottom:25px;">${qText}</p><div class="quiz-options">${opts.map((opt,optIdx)=>{
+if(answered){
+const isCorrect=optIdx===l.quiz.correct[qIndex];
+const isSelected=optIdx===saved.answers[qIndex];
+return`<div class="quiz-option ${isCorrect?'correct':isSelected?'wrong':''}">${opt} ${isCorrect?'✅':isSelected?'❌':''}</div>`;
 }
-function renderQ(q,id){
-const r=quiz[id];
-if(r!==undefined){const ok=r===q.correct;return`<div class="quiz-container"><h3>📝 Quiz</h3><p class="quiz-question">${q.question}</p><div class="quiz-options">${q.options.map((o,i)=>`<div class="quiz-option ${i===q.correct?'correct':i===r?'wrong':''}">${o}${i===q.correct?'✅':i===r?'❌':''}</div>`).join('')}</div><div class="quiz-result ${ok?'pass':'fail'}">${ok?'✅ Corect!':'❌ Aproape!'}</div></div>`;}
-return`<div class="quiz-container" id="q-${id}"><h3>📝 Quiz</h3><p class="quiz-question">${q.question}</p><div class="quiz-options">${q.options.map((o,i)=>`<div class="quiz-option" onclick="ans(${id},${i})">${o}</div>`).join('')}</div></div>`;
+return`<div class="quiz-option" onclick="answerQ(${id},${qIndex},${optIdx})">${opt}</div>`;
+}).join('')}</div>${answered?`<div class="quiz-result ${saved.answers[qIndex]===l.quiz.correct[qIndex]?'pass':'fail'}">${saved.answers[qIndex]===l.quiz.correct[qIndex]?'✅ Corect!':'❌ Greșit! Răspunsul corect este marcat.'}</div><button class="btn btn-primary" onclick="nextQ(${id})" style="margin-top:20px;width:100%;">${qIndex+1<l.quiz.question.length?'Următoarea Întrebare →':'Vezi Rezultate'}</button>`:''}</div>`;
 }
-function ans(id,a){
-const l=lessons.find(x=>x.id===id),ok=a===l.quiz.correct;
-quiz[id]=a;localStorage.setItem('dtt_q',JSON.stringify(quiz));
-document.getElementById(`q-${id}`).innerHTML=`<h3>📝 Quiz</h3><p class="quiz-question">${l.quiz.question}</p><div class="quiz-options">${l.quiz.options.map((o,i)=>`<div class="quiz-option ${i===l.quiz.correct?'correct':i===a?'wrong':''}">${o}${i===l.quiz.correct?'✅':i===a?'❌':''}</div>`).join('')}</div><div class="quiz-result ${ok?'pass':'fail'}">${ok?'✅ Corect!':'❌ Aproape!'}</div>`;
-if(ok&&!completed.includes(id))mark(id,false);
+}else{
+// Single question quiz (old format)
+const result=quizProgress[id];
+if(result!==undefined){
+const ok=result===l.quiz.correct;
+quizHtml=`<div class="quiz-container"><h3>📝 Quiz</h3><p class="quiz-question">${l.quiz.question}</p><div class="quiz-options">${l.quiz.options.map((o,i)=>`<div class="quiz-option ${i===l.quiz.correct?'correct':i===result?'wrong':''}">${o}${i===l.quiz.correct?'✅':i===result?'❌':''}</div>`).join('')}</div><div class="quiz-result ${ok?'pass':'fail'}">${ok?'✅ Corect!':'❌ Aproape!'}</div></div>`;
+}else{
+quizHtml=`<div class="quiz-container" id="quiz-${id}"><h3>📝 Quiz</h3><p class="quiz-question">${l.quiz.question}</p><div class="quiz-options">${l.quiz.options.map((o,i)=>`<div class="quiz-option" onclick="answer(${id},${i})">${o}</div>`).join('')}</div></div>`;
 }
+}
+}
+
+contentEl.innerHTML=`<article class="lesson-content">${l.content}${quizHtml}<div class="nav-buttons"><button class="btn btn-secondary" ${!prev?'disabled':''} onclick="go(${id-1})">← Anterioară</button><button class="btn btn-primary" id="doneBtn" ${done?'disabled':''} onclick="mark(${id})">${done?'✓ Completat':'Marchează Terminat'}</button><button class="btn btn-secondary" ${!next?'disabled':''} onclick="go(${id+1})">Următoare →</button></div></article>`;
+}
+
+function answerQ(id,qIdx,ans){
+const l=lessons.find(x=>x.id===id);
+if(!quizProgress[id])quizProgress[id]={currentQ:0,answers:[],completed:false};
+quizProgress[id].answers[qIdx]=ans;
+localStorage.setItem('dtt_quiz',JSON.stringify(quizProgress));
+load(id);
+}
+
+function nextQ(id){
+const l=lessons.find(x=>x.id===id);
+if(!quizProgress[id])quizProgress[id]={currentQ:0,answers:[],completed:false};
+quizProgress[id].currentQ++;
+if(quizProgress[id].currentQ>=l.quiz.question.length){
+quizProgress[id].completed=true;
+// Check if all correct
+let allCorrect=true;
+quizProgress[id].answers.forEach((ans,idx)=>{
+if(ans!==l.quiz.correct[idx])allCorrect=false;
+});
+if(allCorrect&&!completed.includes(id))mark(id,false);
+}
+localStorage.setItem('dtt_quiz',JSON.stringify(quizProgress));
+load(id);
+}
+
+function resetQuiz(id){
+delete quizProgress[id];
+localStorage.setItem('dtt_quiz',JSON.stringify(quizProgress));
+load(id);
+}
+
+function answer(id,ans){
+const l=lessons.find(x=>x.id===id);
+if(!Array.isArray(l.quiz.question)){
+quizProgress[id]=ans;
+localStorage.setItem('dtt_quiz',JSON.stringify(quizProgress));
+if(ans===l.quiz.correct&&!completed.includes(id))mark(id,false);
+load(id);
+}
+}
+
 function mark(id,reload=true){
-if(!completed.includes(id)){completed.push(id);completed.sort((a,b)=>a-b);localStorage.setItem('dtt_c',JSON.stringify(completed));updateP();renderNav();
-if(reload){const b=document.getElementById('doneBtn');if(b){b.textContent='✓ Completat';b.disabled=true;}}
-if(completed.length===lessons.length)setTimeout(()=>alert('🎉 Felicitări! Ai completat toate lecțiile!'),300);
-}}
-function updateP(){const p=(completed.length/lessons.length)*100;fill.style.width=`${p}%`;text.textContent=`${Math.round(p)}% (${completed.length}/${lessons.length})`;}
+if(!completed.includes(id)){completed.push(id);completed.sort((a,b)=>a-b);localStorage.setItem('dtt_c',JSON.stringify(completed));updateP();renderNav();if(reload){const btn=document.getElementById('doneBtn');if(btn){btn.textContent='✓ Completat';btn.disabled=true;}}if(completed.length===lessons.length)setTimeout(()=>alert('🎉 Felicitări! Ai completat toate lecțiile!'),300);}}
+
+function updateP(){const pct=(completed.length/lessons.length)*100;fill.style.width=`${pct}%`;text.textContent=`${Math.round(pct)}% (${completed.length}/${lessons.length})`;}
+
 document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'&&current>1)go(current-1);if(e.key==='ArrowRight'&&current<lessons.length)go(current+1);});
+
 init();
