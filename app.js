@@ -1,24 +1,30 @@
 let current=1,completed=JSON.parse(localStorage.getItem('dtt_c')||'[]'),quizProgress=JSON.parse(localStorage.getItem('dtt_quiz')||'{}');
 const navEl=document.getElementById('lessonNav'),contentEl=document.getElementById('mainContent'),fill=document.getElementById('progressFill'),text=document.getElementById('progressText');
 
+// Capitole blocate - doar primul e deschis
+const UNLOCKED_LESSONS=[1];
+
 function init(){renderNav();load(current);updateP();}
 
 function renderNav(){navEl.innerHTML=lessons.map(l=>{
-const done=completed.includes(l.id),active=current===l.id;
+const done=completed.includes(l.id),active=current===l.id,unlocked=UNLOCKED_LESSONS.includes(l.id);
+if(!unlocked){
+// Locked lesson - show lock icon and SOON
+return`<button class="lesson-btn locked" disabled title="Disponibil în curând"><div class="lesson-number">Lecția ${l.id}</div><div class="lesson-title-short">🔒 ${l.shortTitle}</div><div style="font-size:0.65rem;color:#666;margin-top:4px;">SOON</div></button>`;
+}
 return`<button class="lesson-btn ${active?'active':''} ${done?'completed':''}" onclick="go(${l.id})"><div class="lesson-number">Lecția ${l.id}</div><div class="lesson-title-short">${l.shortTitle}</div></button>`;
 }).join('');}
 
-function go(id){current=id;renderNav();load(id);window.scrollTo({top:0,behavior:'smooth'});}
+function go(id){if(!UNLOCKED_LESSONS.includes(id))return;current=id;renderNav();load(id);window.scrollTo({top:0,behavior:'smooth'});}
 
 function load(id){
-const l=lessons.find(x=>x.id===id),prev=lessons.find(x=>x.id===id-1),next=lessons.find(x=>x.id===id+1),done=completed.includes(id);
+if(!UNLOCKED_LESSONS.includes(id))return;
+const l=lessons.find(x=>x.id===id),prev=lessons.find(x=>x.id===id-1&&UNLOCKED_LESSONS.includes(x.id)),next=lessons.find(x=>x.id===id+1&&UNLOCKED_LESSONS.includes(x.id)),done=completed.includes(id);
 let quizHtml='';
 if(l.quiz){
 if(Array.isArray(l.quiz.question)){
-// Multi-question quiz
 const saved=quizProgress[id]||{currentQ:0,answers:[],completed:false};
 if(saved.completed){
-// Show results
 const correct=l.quiz.correct;
 let score=0;
 saved.answers.forEach((ans,idx)=>{if(ans===correct[idx])score++;});
@@ -29,7 +35,6 @@ const isCorrect=userAns===correctAns;
 return`<div style="margin:15px 0;padding:15px;background:${isCorrect?'rgba(0,255,136,0.1)':'rgba(255,0,68,0.1)'};border-left:4px solid ${isCorrect?'#00ff88':'#ff0044'};border-radius:0 8px 8px 0;"><strong>Întrebarea ${idx+1}:</strong> ${q}<br><span style="color:${isCorrect?'#00ff88':'#ff0044'}">Răspunsul tău: ${l.quiz.options[idx][userAns]} ${isCorrect?'✓':'✗'}</span><br><span style="color:#00ff88">Corect: ${l.quiz.options[idx][correctAns]}</span></div>`;
 }).join('')}<button class="btn btn-primary" onclick="resetQuiz(${id})" style="margin-top:20px;">Reia Quiz</button></div></div>`;
 }else{
-// Show current question
 const qIndex=saved.currentQ;
 const qText=l.quiz.question[qIndex];
 const opts=l.quiz.options[qIndex];
@@ -44,7 +49,6 @@ return`<div class="quiz-option" onclick="answerQ(${id},${qIndex},${optIdx})">${o
 }).join('')}</div>${answered?`<div class="quiz-result ${saved.answers[qIndex]===l.quiz.correct[qIndex]?'pass':'fail'}">${saved.answers[qIndex]===l.quiz.correct[qIndex]?'✅ Corect!':'❌ Greșit! Răspunsul corect este marcat.'}</div><button class="btn btn-primary" onclick="nextQ(${id})" style="margin-top:20px;width:100%;">${qIndex+1<l.quiz.question.length?'Următoarea Întrebare →':'Vezi Rezultate'}</button>`:''}</div>`;
 }
 }else{
-// Single question quiz (old format)
 const result=quizProgress[id];
 if(result!==undefined){
 const ok=result===l.quiz.correct;
@@ -72,7 +76,6 @@ if(!quizProgress[id])quizProgress[id]={currentQ:0,answers:[],completed:false};
 quizProgress[id].currentQ++;
 if(quizProgress[id].currentQ>=l.quiz.question.length){
 quizProgress[id].completed=true;
-// Check if all correct
 let allCorrect=true;
 quizProgress[id].answers.forEach((ans,idx)=>{
 if(ans!==l.quiz.correct[idx])allCorrect=false;
