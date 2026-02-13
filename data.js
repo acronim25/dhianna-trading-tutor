@@ -785,20 +785,306 @@ Zone unde prețul a stat mult timp (range)<br><br>
 </div>
 `,quiz:{question:["Ce se întâmplă când un resistance puternic este spart?","Ce este un Gap de Epuizare (Exhaustion Gap)?","Fear & Greed Index la 15 indică:","Ce este un Black Swan?","Cum te protejezi de Gap Risk?","Round Numbers ($50k, $100k) funcționează ca:","Ce faci înainte de un eveniment FOMC major?","Un Triple Top cu volum crescut indică:","Ce este un White Swan?","Confluență perfectă include:"],options:[["Devine support","Dispare","Devine mai puternic","Nu contează"],["Început de trend nou","Final de trend - reversal iminent","Confirmare trend","Nu e important"],["Extreme fear - cumpărare","Extreme greed - vânzare","Neutral","Bull market"],["Eveniment pozitiv major","Eveniment imprevizibil, impact devastator","Eveniment așteptat","Trend bullish"],["Hold poziții","Închidere poziții sau guarded stops","Leverage maxim","Cumpărare agresivă"],["Support/Resistance psihologic","Nivel fără importanță","Trend indicator","Volum"],["Trade activ","Evitare trading 1h înainte/după","Leverage maxim","Cumpărare"],["Acumulare bullish","Distribuție - smart money vinde","Indecizie","Breakout iminent"],["Eveniment negativ","Eveniment pozitiv neașteptat","Trend bearish","Lichidare"],["Un singur factor","Multiple factori aliniați","Volum doar","Știri negative"]],correct:[0,1,0,1,1,0,1,1,1,1]}}
 ,
-{id:4,title:"Trend și Trendlines",shortTitle:"Trend",content:`
-<h2>📈 Trend-ul Este Prietenul Tău</h2>
-<p>Regula #1: <strong>"The trend is your friend"</strong>. Nu lupta împotriva trend-ului!</p>
-<h3>🔄 Cele Trei Tipuri de Trend</h3>
-<ul><li><strong>Uptrend (Bullish)</strong> = High-uri mai înalte + Low-uri mai înalte → Cumperi dip-uri</li><li><strong>Downtrend (Bearish)</strong> = Low-uri mai joase + High-uri mai joase → Short-ezi bounce-uri sau stai pe margine</li><li><strong>Range</strong> = Prețul oscilează între support și resistance → Cumperi support, vinzi resistance</li></ul>
-<h3>📐 Trendlines (Linii de Trend)</h3>
-<p>Conectezi minimum 2 puncte de pivot:</p>
-<ul><li>Trendline ascendentă = Conectezi low-urile</li><li>Trendline descendentă = Conectezi high-urile</li></ul>
-<div class="warning-box"><strong>⚠️ Trendline Break = Semnal Important!</strong> Când prețul sparge trendline-ul în mod convingător, trend-ul s-ar putea schimba.</div>
-<h3>🏥 Analogie Medicală</h3>
-<ul><li><strong>Uptrend</strong> = Pacientul se recuperează constant</li><li><strong>Downtrend</strong> = Starea se înrăutățește - nu interveni până nu vezi stabilizare</li><li><strong>Range</strong> = Stabilizare în ATI - monitorizezi pentru breakout</li></ul>
-<div class="example-trade loss"><h4>📕 Exemplu Real - Trade Pierdut</h4>ETH în downtrend clar. Am văzut o "oportunitate" de long. ETH a continuat să cadă încă 15%. <strong>Lesson:</strong> Nu ghici bottom-ul în downtrend!</div>
-<div class="tip-box"><strong>💡 Regula de Aur:</strong> Întotdeauna tranzacționează în direcția trend-ului de pe timeframe-ul mai mare.</div>
-`,quiz:{question:"ETH face high-uri din ce în ce mai joase și low-uri din ce în ce mai joase. Ce tip de trend este?",options:["Uptrend","Downtrend","Sideways","Nu pot să știu"],correct:1}},
+{id:4,title:"Dansul Pieței: Trend-uri, Pattern-uri și Când Să Le Respecți",shortTitle:"Trend",content:`
+<h2>📈 Trend-ul: Direcția în care Curge Sângele Pieței</h2>
+
+<p>Dacă Support și Resistance sunt <strong>"scheletul"</strong> pieței, atunci Trend-ul este <strong>"inima"</strong> - pompa care menține totul în mișcare. A tranzacționa împotriva trend-ului e ca și cum ai încerca să oprești o hemoragie cu mâinile goale.</p>
+
+<div class="highlight-box">
+<strong>🏥 ANALOGIE MEDICALĂ - Sistemul Circulator:</strong><br><br>
+
+Gândește-te la trend ca la <strong>fluxul sanguin</strong>:<br>
+• <strong>Uptrend</strong> = Circulație normală, sânge oxigenat merge spre organe (creștere sănătoasă)<br>
+• <strong>Downtrend</strong> = Șoc circulator, sângele se acumulează în vene (scădere periculoasă)<br>
+• <strong>Range/Sideways</strong> = Circulație deficitară, pacient stabil dar fără progres (așteptare)<br>
+• <strong>Trendline Break</strong> = Ruptură de vas sanguin - moment critic care schimbă totul
+</div>
+
+<h3>🔄 Cele Trei Stări ale Pieței</h3>
+
+<div class="highlight-box">
+<strong>📈 UPTREND (Trend Ascendent) = Pacient în Recuperare</strong><br><br>
+
+<strong>Definiție:</strong> Seria de Higher Highs (HH) + Higher Lows (HL)<br>
+→ Fiecare vârf e mai înalt decât precedentul<br>
+→ Fiecare vale e mai înaltă decât precedenta<br><br>
+
+<strong>Strategie:</strong> <span style="color:#00ff88">"Buy the dip"</span> - Cumperi scăderile<br>
+→ Când prețul coboară spre trendline sau ultimul HL = oportunitate<br>
+→ Nu short-ezi în uptrend decât dacă vezi clar exhaustion<br><br>
+
+<strong>Analogie Medicală:</strong> Pacient care se recuperează după o intervenție. Parametrii vitali cresc constant. Îi dai medicamente de susținere (buy dips), nu îi oprești tratamentul.
+</div>
+
+<div class="warning-box">
+<strong>📉 DOWNTREND (Trend Descendent) = Pacient în Șoc</strong><br><br>
+
+<strong>Definiție:</strong> Seria de Lower Lows (LL) + Lower Highs (LH)<br>
+→ Fiecare vale e mai joasă decât precedenta<br>
+→ Fiecare vârf e mai jos decât precedentul<br><br>
+
+<strong>Strategie:</strong> <span style="color:#ff0044">"Short the bounce" sau STAY OUT</span><br>
+→ Când prețul urcă spre trendline sau ultimul LH = short<br>
+→ NU cumperi "că a căzut destul" - ai văzut ce s-a întâmplat cu FTX?<br>
+→ Downtrend-ul poate dura mult mai mult decât crezi<br><br>
+
+<strong>Analogie Medicală:</strong> Pacient în șoc septic. Poți să vezi o "stabilizare" temporară, dar organismul continuă să se deterioreze. Nu faci intervenții elective în șoc!
+</div>
+
+<div class="tip-box">
+<strong>📊 RANGE (Trend Lateral) = Stabilizare în ATI</strong><br><br>
+
+<strong>Definiție:</strong> Prețul oscilează între Support și Resistance clar definite<br>
+→ Nu face Higher Highs sau Lower Lows semnificative<br>
+→ Acumulare sau distribuție (smart money pregătește ceva)<br><br>
+
+<strong>Strategie:</strong> <span style="color:#ffaa00">"Buy support, sell resistance"</span> sau AȘTEAPTĂ breakout<br>
+→ Cumperi la limita inferioară, vinzi la cea superioară<br>
+→ Când prețul sparge range-ul = trend nou începe<br><br>
+
+<strong>Analogie Medicală:</strong> Pacient în ATI stabil, dar critic. Nu e nici în recuperare, nici în deteriorare activă. Aștepți să vezi spre ce direcție evoluează.
+</div>
+
+<h3>📐 Trendlines - Cateterul care Măsoară Presiunea</h3>
+
+<p>Trendline-urile sunt linii trasate între două sau mai multe puncte de pivot pentru a vizualiza direcția trend-ului.</p>
+
+<div class="highlight-box">
+<strong>Cum Trasezi Corect:</strong><br><br>
+
+1. <strong>Uptrend Line:</strong> Conectezi minimum 2 Higher Lows (văi crescătoare)<br>
+→ Linia de sub preț, suport dinamic<br>
+→ Fiecare atingere = potențial buy<br><br>
+
+2. <strong>Downtrend Line:</strong> Conectezi minimum 2 Lower Highs (vârfuri descrescătoare)<br>
+→ Linia de deasupra prețului, resistance dinamic<br>
+→ Fiecare atingere = potențial short<br><br>
+
+3. <strong>Regula de Aur:</strong> Cu cât mai multe atingeri, cu atât mai validă linia!<br>
+→ 2 atingeri = valid, dar slab<br>
+→ 3+ atingeri = foarte valid<br>
+→ 5+ atingeri = extrem de puternic (dar atenție la break!)
+</div>
+
+<h3>🔨 Pattern-uri de Trend - Diagnosticul Avansat</h3>
+
+<div class="highlight-box">
+<strong>🏥 Ca un chirurg care recunoaște anumite configurări anatomice periculoase, traderul recunoaște pattern-uri care prevestesc schimbări majore.</strong>
+</div>
+
+<h4>1️⃣ TRIPLE TOP - Eșecul Respirației (Bullish Exhaustion)</h4>
+
+<div style="background:#1a1a1a;padding:20px;border-left:4px solid #ff0044;margin:20px 0;">
+<pre style="color:#c9b8a8;font-family:monospace;font-size:14px;line-height:1.4;">
+    Price
+      │    ╭─╮      ╭─╮      ╭─╮
+      │   ╱   ╲    ╱   ╲    ╱   ╲ ← Three peaks
+      │  ╱     ╲  ╱     ╲  ╱     ╲   at same level
+      │ ╱       ╲╱       ╲╱       ╲
+      │╱                             
+      ├─────────────────────────────────
+      │     ╲   ╱╲   ╱╲   ╱
+      │      ╲─╯  ╲─╯  ╲─╯ ← Support level
+      │                    (Neckline)
+      └────────────────────────────────→ Time
+      
+      🟥 BEARISH - Reversal Pattern
+      Target: Height of pattern projected down
+</pre>
+</div>
+
+<p><strong>Descriere:</strong> Trei vârfuri la același nivel, cu retrageri între ele care se opresc în aceeași zonă (neckline).</p>
+
+<p><strong>Ce arată:</strong> Cumpărătorii au încercat de 3 ori să spargă un nivel și au eșuat. Epuizare totală a forțelor bullish.</p>
+
+<div class="example-trade loss">
+<h4>📕 Povestea Eșecului Meu: Triple Top pe ETH (2021)</h4>
+<p>ETH a format Triple Top la $4,400 (august-septembrie 2021).</p>
+<p>Eu am văzut a treia "atingere" și am zis: "Deja a mai fost de 2 ori acolo și a crescut, sigur trece acum!"</p>
+<p>Am cumpărat cu 10x leverage la $4,350.</p>
+<p><strong>Rezultat:</strong> ETH a căzut la $2,800 în 3 săptămâni. Pierdere 60% (liquidated parțial).</p>
+<p><strong>Lesson:</strong> <span style="color:#ff0044">TRIPLE TOP = SELL, nu buy!</span> Volumul scădea pe fiecare vârf = distribuție.</p>
+<p><strong>Analogie Medicală:</strong> Pacient care încearcă să respire de 3 ori și se oprește. A treia oară, organismul cedează.</p>
+</div>
+
+<div class="highlight-box">
+<strong>Când să FADEZI (trading împotriva) vs Respecți:</strong><br><br>
+
+✅ <strong>RESPECTĂ (Trade cu pattern-ul):</strong><br>
+→ Short după ce prețul sparge neckline-ul<br>
+→ Target: Distanța de la vârf la neckline, proiectată în jos<br>
+→ SL deasupra ultimului vârf<br><br>
+
+❌ <strong>NU FADEZI:</strong><br>
+→ Nu cumpăra la al treilea vârf "că sigur trece"<br>
+→ Volum descrescător pe vârfuri = distribuție clară
+</div>
+
+<h4>2️⃣ FALLING WEDGE - Presiunea Pozitivă care Se Acumulează (Bullish Reversal)</h4>
+
+<div style="background:#1a1a1a;padding:20px;border-left:4px solid #00ff88;margin:20px 0;">
+<pre style="color:#c9b8a8;font-family:monospace;font-size:14px;line-height:1.4;"
+    Price
+      │╲
+      │ ╲     ╭─╮
+      │  ╲   ╱   ╲    ╭─╮
+      │   ╲ ╱     ╲  ╱   ╲  ╭──╮ ← Lower Highs
+      │    ╳       ╲╱     ╲╱    ╲  (descending)
+      │   ╱ ╲                      ╲
+      │  ╱   ╲    ╭──╮             ╲
+      │ ╱     ╲  ╱    ╲   ╭──╮      ╲
+      │╱       ╲╱      ╲──╯   ╲──────╲ ← Lower Lows
+      │                                  (descending, but
+      ├───────────────────────────────────  converging)
+      │
+      └────────────────────────────────→ Time
+      
+      🟢 BULLISH - Reversal Pattern
+      Breakout: Upwards through upper trendline
+</pre>
+</div>
+
+<p><strong>Descriere:</strong> Canal descendent în care ambele linii converg (se apropie). High-urile coboară mai repede decât low-urile.</p>
+
+<p><strong>Ce arată:</strong> Vânzătorii slăbesc (nu mai pot împinge prețul atât de jos), în timp ce cumpărătorii devin mai agresivi.</p>
+
+<div class="example-trade win">
+<h4>📗 Trade Câștigător: Falling Wedge pe BTC (Octombrie 2023)</h4>
+<p>BTC în downtrend de la $31k la $25k. Formează Falling Wedge pe Daily.</p>
+<p><strong>Semnale:</strong></p>
+<ul>
+<li>Volum descrescător pe fiecare nou low (vânzători epuizați)</li>
+<li>RSI bullish divergence (preț mai jos, RSI mai sus)</li>
+<li>Wedge-ul se formează după 3 luni de downtrend (suficient pentru reversal)</li>
+</ul>
+<p><strong>Trade:</strong> Long la breakout prin trendline-ul superior ($26,500). SL sub ultimul low ($25,000). TP $32,000.</p>
+<p><strong>Rezultat:</strong> BTC a ajuns la $35k în 3 săptămâni. <strong>Profit 24% (120% cu 5x leverage).</strong></p>
+<p><strong>Analogie Medicală:</strong> Pacient cu tensiune scăzută care începe să stabilizeze. Semne vitale slabe dar constante. Momentul perfect pentru intervenție.</p>
+</div>
+
+<div class="highlight-box">
+<strong>Când să FADEZI vs Respecți:</strong><br><br>
+
+✅ <strong>RESPECTĂ (Bullish):</strong><br>
+→ Cumpără breakout-ul în sus (prin linia de sus)<br>
+→ Așteaptă confirmare cu volum mare<br>
+→ Target: Începutul wedge-ului (proiecție în sus)<br><br>
+
+❌ <strong>NU SHORTA ÎN INTERIOR:</strong><br>
+→ Fiecare low e mai sus decât ar fi așteptat<br>
+→ Convergența = presiune se acumulează pentru breakout bullish
+</div>
+
+<h4>3️⃣ RISING WEDGE - Epuizarea Cumpărătorilor (Bearish Reversal)</h4>
+
+<div style="background:#1a1a1a;padding:20px;border-left:4px solid #ff0044;margin:20px 0;">
+<pre style="color:#c9b8a8;font-family:monospace;font-size:14px;line-height:1.4;">
+    Price
+      │                              ╱╲
+      │                        ╭──╮╱  ╲
+      │                   ╭──╮╱    ╲   ╲ ← Higher Highs
+      │              ╭──╮╱          ╲   ╲  (ascending but
+      │         ╭──╮╱                ╲   ╲  converging)
+      │    ╭──╮╱                      ╲   ╲
+      │╭──╯   ╲                        ╲   ╲
+      │╱       ╲───────────────────────╲──╲──╲ ← Higher Lows
+      │                                     (support)
+      ├────────────────────────────────────────→ Time
+      
+      🟥 BEARISH - Reversal Pattern
+      Breakout: Downwards through lower trendline
+</pre>
+</div>
+
+<p><strong>Descriere:</strong> Canal ascendent în care ambele linii converg. High-urile urcă mai încet decât low-urile.</p>
+
+<p><strong>Ce arată:</strong> Cumpărătorii slăbesc (nu mai pot împinge prețul atât de sus), dar prețul încă crește pe entuziasm/ștampilare.</p>
+
+<div class="example-trade loss">
+<h4>📕 Pierdere Dureroasă: Rising Wedge pe SOL (Noiembrie 2021)</h4>
+<p>SOL a urcat de la $35 la $260 în 3 luni. În ultimele 2 săptămâni a format Rising Wedge.</p>
+<p>Eu am văzut ATH nou în fiecare zi și am zis: "Merge spre $300!"</p>
+<p>Am cumpărat la $240 cu 8x leverage.</p>
+<p><strong>Rezultat:</strong> Wedge-ul a spart în jos. SOL a căzut la $170 în 5 zile, apoi la $80 în 3 săptămâni. Pierdere <strong>70%</strong>.</p>
+<p><strong>Lesson:</strong> <span style="color:#ff0044">Rising Wedge după parabolic move = DEADLY.</span> Chiar dacă prețul mai face un high mic, vânzătorii pregătesc ambuscada.</p>
+</div>
+
+<h4>4️⃣ HEAD AND SHOULDERS - Infarctul Pieței (Ultimul Avertisment)</h4>
+
+<div style="background:#1a1a1a;padding:20px;border-left:4px solid #ff0044;margin:20px 0;">
+<pre style="color:#c9b8a8;font-family:monospace;font-size:14px;line-height:1.4;">
+    Price
+      │           ╭─╮
+      │          ╱   ╲     ← Head (maxim)
+      │    ╭─╮  ╱     ╲    ╭─╮
+      │   ╱   ╲╱       ╲──╱   ╲ ← Shoulders
+      │  ╱     ╲       ╱        (simetrice)
+      │ ╱       ╲─────╱
+      │╱         ╲   ╱
+      ├───────────╲─╱──────────────────
+      │
+      │  Neckline (support crucial)
+      └────────────────────────────────→ Time
+      
+      🟥 BEARISH - Major Reversal
+      Target: Head to neckline distance, down
+</pre>
+</div>
+
+<p><strong>Descriere:</strong> Un vârf central (cap) flancat de două vârfuri mai mici (umeri). Linia de "gat" (neckline) conectează cele două văi dintre umeri.</p>
+
+<p><strong>Ce arată:</strong> Epuizare completă. Cumpărătorii au încercat un ultim push (capul), dar au eșuat. A doua încercare (umerul drept) confirmă epuizarea.</p>
+
+<div class="example-trade win">
+<h4>📗 Short Perfect: Head & Shoulders pe BTC (Aprilie 2021)</h4>
+<p>BTC la $64k ATH. Formează Head & Shoulders pe Weekly.</p>
+<p><strong>Confirmări:</strong></p>
+<ul>
+<li>Volum mai mic pe cap decât pe umărul stâng (divergență bearish)</li>
+<li>RSI bearish divergence (preț higher high, RSI lower high)</li>
+<li>Neckline la $52k - testat de 2 ori</li>
+</ul>
+<p><strong>Trade:</strong> Short la breakdown sub $52k (neckline). SL deasupra capului ($65k). TP $40k.</p>
+<p><strong>Rezultat:</strong> BTC a căzut la $30k în 2 săptămâni. <strong>Profit 42% short (210% cu 5x leverage).</strong></p>
+</div>
+
+<h3>🎯 Când să FADEZI Pattern-ul vs Când să Îl Respecți</h3>
+
+<div class="warning-box">
+<strong>⚠️ REGULA DE AUR - FADE vs RESPECT:</strong><br><br>
+
+<strong>RESPECTĂ Pattern-ul (Trade în direcția lui) CÂND:</strong><br>
+✅ Volumul confirmă (breakout cu volum mare)<br>
+✅ Pattern-ul e complet format (nu tranzacționa "înăuntru")<br>
+✅ Ai confirmare de timeframe mai mare<br>
+✅ Managementul riscului e clar (SL, TP)<br><br>
+
+<strong>FADEZI Pattern-ul (Trade împotriva) NUMAI CÂND:</strong><br>
+⚠️ Ești PROFESSIONAL cu ani de experiență<br>
+⚠️ Vezi divergențe clare pe multiple timeframes<br>
+⚠️ Ai informații privilegiate (NU recomandat, poate fi ilegal)<br>
+⚠️ Faci SCALPING pe timeframe-uri mici (1m-5m)<br><br>
+
+<span style="color:#ff0044">PENTRU ÎNCEPĂTORI: NU FADEZI! Respectă pattern-ul întotdeauna!</span>
+</div>
+
+<h3>💡 Summary: Trend Trading Checklist</h3>
+
+<div class="tip-box">
+1️⃣ <strong>Identifică trend-ul:</strong> Uptrend = buy dips, Downtrend = short bounces sau stai afară<br><br>
+
+2️⃣ <strong>Trasează trendline-uri:</strong> Minimum 2 puncte, preferably 3+<br><br>
+
+3️⃣ <strong>Recunoaște pattern-urile:</strong> Triple Top, Wedges, Head & Shoulders<br><br>
+
+4️⃣ <strong>Așteaptă confirmare:</strong> Nu tranzacționa până nu vezi breakout cu volum<br><br>
+
+5️⃣ <strong>Respectă target-urile:</strong> Pattern-urile au target-uri măsurabile<br><br>
+
+6️⃣ <strong>Managementul riscului:</strong> Chiar și cel mai bun pattern poate eșua
+</div>
+`,quiz:{question:["Ce este un Triple Top?","Falling Wedge este:","Într-un Uptrend, strategia corectă este:","Ce indică un Rising Wedge?","Head and Shoulders este pattern:","Când ar trebui să FADEZI un pattern?","Trendline-ul se trasează prin:","Target-ul unui Triple Top se calculează:","Într-un Downtrend clar, ce faci?","Cel mai important element pentru validarea unui breakout este:"],options:[["Pattern bullish de continuare","Pattern bearish de revers - 3 vârfuri","Support puternic","Indecizie"],["Pattern bullish de revers","Pattern bearish de continuare","Canal descendent","Gap"],["Vinzi fiecare bounce","Cumperi fiecare dip","Nu faci nimic","Aștepți breakdown"],["Continuare bullish","Revers bearish - epuizare","Canal lateral","Gap up"],["Bullish","Bearish de revers major","Continuare","Indecizie"],["Ca începător, niciodată","Ca profesionist, uneori","Întotdeauna","Doar în range"],["Cele mai recente prețuri","Punctele de maxim/minim (pivot)","Volumul","RSI"],["Distanța de la vârf la neckline, proiectată în jos","50% din mișcare","ATR x 2","Volumul"],["Cumperi că "a căzut destul"","Vinzi bounces sau stai afară","Aștepți cu nerăbdare","Cumperi cu leverage maxim"],["Volumul","Culoarea candle-ului","Timpul din zi","Sentimentul Twitter"]],correct:[1,0,1,1,1,1,1,0,1,0]}}
+,
 {id:5,title:"Risk Management #1",shortTitle:"Risk Mgmt",content:`
 <h2>🛡️ Risk Management: Supraviețuirea</h2>
 <p><strong>CEL MAI IMPORTANT</strong> modul. Fără risk management = gambling.</p>
