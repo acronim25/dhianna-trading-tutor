@@ -1009,20 +1009,371 @@ Strategie: Buy support, sell resistance sau aștepți breakout
 </div>
 `,quiz:{question:["La acest chart observi:<br><img src='chart_apophenia.png' style='max-width:100%;margin:10px 0;border:1px solid #333;'>","Ce este un Triple Top?","Falling Wedge indică:","În Uptrend, strategia este:","Ce înseamnă Apophenia?","Care e pericolul Apopheniei?","Shiny Object Bias înseamnă:","Cum combati Shiny Object?","Grizzly Bias se manifestă prin:","Ce pierzi cu Grizzly Bias?","Squirrel Chasing înseamnă:","Cum eviți Squirrel Chasing?","Ce este un Rising Wedge?","Head & Shoulders este:","Când respecți un pattern?","Care e regula de aur pentru începători?"],options:[["Head & Shoulders clar","Double Bottom bullish","Nu se poate spune","Uptrend confirmat"],["Pattern bullish","Pattern bearish cu 3 vârfuri","Support","Indecizie"],["Reversal bearish","Reversal bullish","Continuare","Gap"],["Vinzi bounce-uri","Cumperi dips","Nu faci nimic","Aștepți"],["Vedem pattern-uri imaginare","Frica","Lăcomie","Volum"],["Tranzacționăm pattern-uri false","Pierdem încet","Nu folosim SL","Cumpărăm prea devreme"],["Abandonăm strategia pentru noutăți","Nu folosim leverage","Evităm risk management","Tranzacționăm prea mult"],["Sticking to the plan","Mai multe coin-uri","Indicatori noi","Fără SL"],["Nu acționăm când e rău","Tranzacționăm prea mult","Nu folosim leverage","FOMO"],["Timp și capital","Doar bani","Încredere","Volum"],["Distragere constantă","Frica","Lăcomie","Nu folosim SL"],["Time-block și focus","Mai multe ecrane","Fără SL","Tranzacționăm tot"],["Pattern bearish - converging up","Pattern bullish","Canal lateral","Gap"],["Pattern bearish major","Pattern bullish","Continuare","Indecizie"],["Când volumul confirmă breakout","Întotdeauna","Niciodată","Doar în range"],["Nu fadezi, respecți pattern-ul","Fadezi mereu","Nu folosești SL","Tranzacționezi tot"]],correct:[2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0]}}
 ,
-{id:5,title:"Risk Management #1",shortTitle:"Risk Mgmt",content:`
-<h2>🛡️ Risk Management: Supraviețuirea</h2>
-<p><strong>CEL MAI IMPORTANT</strong> modul. Fără risk management = gambling.</p>
-<h3>📏 Regula 1% (sau 2% max)</h3>
-<p><strong>Niciodată să nu riști mai mult de 1-2% din capitalul total pe un singur trade.</strong></p>
-<div class="highlight-box">Capital: $10,000 | Risk: 1% = $100<br>10 losing trades la rând = pierzi doar $1,000 (10%), nu tot.</div>
-<h3>🧮 Position Sizing</h3>
-<div class="highlight-box">Position Size = (Capital Total × Risk %) ÷ (Entry Price - Stop Loss Price)</div>
-<p>Ex: $10k capital, 1% risk, entry $65k, SL $63k<br>Position = $100 ÷ $2,000 = 0.05 BTC (~$3,250)</p>
-<h3>🛑 Stop Loss (SL)</h3>
-<ul><li>Pune-l la un nivel care invalidează setup-ul</li><li>NU muta SL când pierzi!</li><li>Fără SL = gambling</li></ul>
-<h3>🎯 Take Profit (TP)</h3>
-<ul><li>Risk/Reward minim 1:2</li><li>TP1 (50% poziție) la 1:2</li><li>TP2 (25%) la 1:3</li><li>TP3 (25%) cu trailing stop</li></ul>
-`,quiz:{question:"Ai $5,000 capital. Cât ar trebui să riști maxim pe un singur trade conform regulii 1%?",options:["$500","$1,000","$50","Tot capitalul"],correct:2}},
+{id:5,title:"Risk Management Avansat: Chirurgia Trade-ului",shortTitle:"Risk & EV",content:`
+<h2>🧠 Risk Management: Chirurgia Financiară</h2>
+
+<p>Bun venit în <strong>cea mai importantă lecție</strong> din acest curs. Dacă înveți doar un lucru din toate acestea, să fie acesta: <strong>supraviețuirea capitalului este prioritatea #1</strong>.</p>
+
+<p>Ca neurochirurg, știi că <strong>o decizie greșită poate costa o viață</strong>. În trading, o decizie greșită poate costa întregul capital. Dar există o diferență crucială: în sala de operație, uneori nu ai control asupra rezultatului (complicații neprevăzute). În trading, <strong>tu controlezi complet</strong> cât riști înainte să intri. Acesta este super-puterile tale.</p>
+
+<div class="highlight-box">
+<strong>🏥 ANALOGIA MEDICALĂ - Risk Management în Sala de Operație:</strong><br><br>
+
+<strong>1. EVALUARE PRE-OP (Analiza Riscului)</strong><br>
+→ Ce complicații pot apărea? (Ce poate merge prost în trade?)<br>
+→ Am plan de contingență? (Unde e Stop Loss-ul?)<br>
+→ Care e raportul beneficiu/risc? (R:R ratio)<br><br>
+
+<strong>2. DECIZIE BAZATĂ PE DATE, NU PE EMOȚII</strong><br>
+→ Nu operezi pentru că "simți" că va merge bine<br>
+→ Operezi pentru că datele susțin intervenția<br>
+→ Dacă riscul e prea mare, refuzi cazul (nu tradezi)<br><br>
+
+<strong>3. TOLERANȚĂ LA DURERE CONTROLATĂ</strong><br>
+→ Pierdere mică, controlată = complicație minoră gestionată<br>
+→ Pierdere mare, necontrolată = decesul pacientului (contului)<br>
+→ Acceptarea că nu toate operațiile reușesc este esențială
+</div>
+
+<h3>🎯 Ce Este Risk Management în Trading?</h3>
+
+<p><strong>Risk Management</strong> = Setul de reguli și calcule care te protejează de pierderi catastrofale și îți permite să supraviețuiești suficient de mult pentru a-ți permite edge-ul să funcționeze.</p>
+
+<p>Chiar și cei mai buni traderi au win rate de doar 50-60%. <strong>Nu câștigă mereu, dar câștigă mai mult atunci când au dreptate decât pierd când greșesc.</strong> Asta este arta risk management-ului.</p>
+
+<div class="highlight-box">
+<strong>📊 MATEMATICA SUPRAVIEȚUIRII:</strong><br><br>
+
+<strong>Scenariul A: Trader Fără RM</strong><br>
+Capital: $10,000 | Risk per trade: 20%<br>
+După 5 losing trades consecutive: $10k → $3,276 (-67%)<br>
+<strong>Necesită +205% profit doar ca să revii la break-even!</strong><br><br>
+
+<strong>Scenariul B: Trader Disciplinat</strong><br>
+Capital: $10,000 | Risk per trade: 1%<br>
+După 5 losing trades consecutive: $10k → $9,510 (-4.9%)<br>
+<strong>Necesită doar +5% profit pentru break-even.</strong><br><br>
+
+<strong>Concluzie: Pierderile mici te țin în joc. Pierderile mari te elimină.</strong>
+</div>
+
+<h3>⚖️ Regula de Aur: 1-2% Risk Per Trade</h3>
+
+<p><strong>NICIODATĂ să nu riști mai mult de 1-2% din capitalul total pe un singur trade.</strong></p>
+
+<p>Aceasta este regula non-negociabilă. Nu există excepții. Nu există "dar de data asta sunt sigură". Nu există "am un feeling puternic".</p>
+
+<div class="example-trade win">
+<h4>📗 EXEMPLU: De Ce Funcționează</h4>
+<p><strong>Capital inițial:</strong> $10,000</p>
+<p><strong>Risk per trade:</strong> 1% = $100</p>
+<p><strong>Win rate:</strong> 40% (sub coin flip!)</p>
+<p><strong>R:R average:</strong> 1:2.5</p><br>
+
+<p><strong>Rezultat după 100 de trades:</strong></p>
+<p>40 winners × $250 = +$10,000</p>
+<p>60 losers × $100 = -$6,000</p>
+<p><strong>Profit net: +$4,000 (+40%)</strong></p><br>
+
+<p>Ai câștigat bani cu <strong>doar 40% win rate</strong> pentru că ai controlat pierderile și ai lăsat câștigurile să crească!</p>
+</div>
+
+<div class="example-trade loss">
+<h4>📕 EXEMPLU: De Ce Eșuează Nepăsătorii</h4>
+<p><strong>Capital inițial:</strong> $10,000</p>
+<p><strong>Risk per trade:</strong> 10% = $1,000</p>
+<p><strong>Win rate:</strong> 60% (excelent!)</p>
+<p><strong>R:R average:</strong> 1:1</p><br>
+
+<p><strong>Rezultat după doar 10 losing trades consecutive:</strong></p>
+<p>$10,000 → $3,486 (-65%)</p><br>
+
+<p>Chiar și cu un win rate bun, o serie de pierderi (care <strong>va apărea garantat</strong> într-un moment) te distruge pentru că ai risk-at prea mult.</p>
+</div>
+
+<h3>🧮 Calculul Poziției Pre-Trade (Position Sizing)</h3>
+
+<p>Aici intervine matematica care îți salvează contul. <strong>Niciodată nu decizi „cât să cumperi” înainte să știi „cât riști”.</strong></p>
+
+<p>Ordinea corectă a deciziilor:</p>
+<ol>
+<li><strong>Capitalul total</strong> (ex: $10,000)</li>
+<li><strong>Risk % per trade</strong> (ex: 1% = $100)</li>
+<li><strong>Entry price</strong> (ex: BTC la $65,000)</li>
+<li><strong>Stop Loss price</strong> (ex: $63,000 - unde setup-ul e invalidat)</li>
+<li><strong>Abia apoi:</strong> Calculezi câte unități poți cumpăra</li>
+</ol>
+
+<div class="highlight-box">
+<strong>🔢 FORMULA DE POZIȚIE:</strong><br><br>
+
+<strong>Position Size ($) = Risk Amount ($) ÷ (Entry - Stop Loss)</strong><br><br>
+
+<strong>Exemplu practic:</strong><br>
+Capital: $10,000<br>
+Risk: 1% = $100<br>
+Entry BTC: $65,000<br>
+Stop Loss: $63,000<br>
+Distanță SL: $2,000 (3.08%)<br><br>
+
+Position Size = $100 ÷ $2,000 = 0.05 BTC<br>
+Valoare poziție: 0.05 × $65,000 = <strong>$3,250</strong><br><br>
+
+<strong>Verificare:</strong> Dacă BTC scade de la $65k la $63k, pierzi:<br>
+0.05 BTC × $2,000 = <strong>$100 (exact 1% din capital!)</strong>
+</div>
+
+<div class="highlight-box">
+<strong>🔢 FORMULA CU LEVERAGE:</strong><br><br>
+
+<strong>Nu schimbă risk-ul! Doar eficiența capitalului.</strong><br><br>
+
+Cu exemplul de mai sus:<br>
+Poziție reală: $3,250<br>
+Capital disponibil: $10,000<br>
+Leverage necesar: $3,250 ÷ $10,000 = 0.325x (fără leverage necesar!)<br><br>
+
+Dacă vrei să folosești doar $1,000 margin:<br>
+Leverage = $3,250 ÷ $1,000 = <strong>3.25x</strong><br><br>
+
+<strong>⚠️ Leverage nu mărește profitul, doar eficiența capitalului. Risk-ul rămâne $100!</strong>
+</div>
+
+<h3>🎯 Convicție și Size: Când Să Mărești Poziția</h3>
+
+<p>Aici devine interesant. <strong>Nu toate trade-urile sunt egale.</strong> Unele setup-uri sunt „A+” - au confluență maximă, timing perfect, context favorabil. Altele sunt „B” sau „C” - OK, dar nu excepționale.</p>
+
+<p>Ca neurochirurg, nu abordezi toate cazurile cu aceeași intensitate. Un anevrism cerebral rupt = echipă completă, maximă atenție, toate resursele. O biopsie simplă = protocol standard.</p>
+
+<div class="highlight-box">
+<strong>🏥 SISTEMUL DE CLASIFICARE A SETUP-URILOR:</strong><br><br>
+
+<strong>🅰️🅰️🅰️ Setup „A+” (Caz Ruptură de Anevrism)</strong><br>
+→ 4+ factori de confluență<br>
+→ Timing perfect cu evenimente macro<br>
+→ Volum anormal (confirmare instituțională)<br>
+→ Risk: <strong>2%</strong> (maxim!)<br><br>
+
+<strong>🅰️ Setup „A” (Caz Complicat)</strong><br>
+→ 3 factori de confluență<br>
+→ Context favorabil<br>
+→ Risk: <strong>1.5%</strong><br><br>
+
+<strong>🅱️ Setup „B” (Caz Standard)</strong><br>
+→ 2 factori de confluență<br>
+→ Condiții normale<br>
+→ Risk: <strong>1%</strong><br><br>
+
+<strong>🅲️ Setup „C” (Caz Minor)</strong><br>
+→ 1 factor sau setup marginal<br>
+→ Risk: <strong>0.5%</strong> sau skip<br><br>
+
+<strong>❌ Fără Setup (Consultație)</strong><n→ Nu tradezi
+</div>
+
+<h4>🔍 Factori de Confluență pentru „A+” Setup:</h4>
+<ul>
+<li><strong>Technical:</strong> Support/Resistance major + pattern de inversare (divergență RSI, dublu bottom/top)</li>
+<li><strong>Macro:</strong> Eveniment economic favorabil sau absența unuia periculos</li>
+<li><strong>Sentiment:</strong> Fear & Greed Index extrem (fear = cumpărare, greed = prudență)</li>
+<li><strong>On-chain:</strong> Whale accumulation, funding rates negative (pentru long)</li>
+<li><strong>Volume:</strong> Spike de volum la nivel cheie (confirmare instituțională)</li>
+</ul>
+
+<div class="example-trade win">
+<h4>📗 EXEMPLU: Setup A+ (Risc 2%)</h4>
+<p><strong>BTC la $52,000 în martie 2024:</strong></p>
+<ul>
+<li>Support major testat de 3x în ultimele 6 luni</li>
+<li>Divergență bullish pe RSI (preț mai jos, RSI mai sus)</li>
+<li>Fear & Greed Index la 20 (Extreme Fear)</li>
+<li>Funding rates negative (-0.01% / 8h) - short-urile domină</li>
+<li>Volume 3x medie zilnică la bounce</li>
+</ul><br>
+<p><strong>Concluzie:</strong> 5 factori de confluență = Setup A+</p>
+<p><strong>Decizie:</strong> Risk 2% = $200 pe acest trade în loc de $100</p>
+<p><strong>Rezultat:</strong> BTC a crescut 35% în următoarele 3 săptămâni</p>
+</div>
+
+<h3>💎 Expected Value (EV): Matematica Câștigului</h3>
+
+<p><strong>EV este cel mai important concept în trading.</strong> Îți spune dacă un trade merită făcut, independent de rezultatul individual.</p>
+
+<p>Ca neurochirurg, nu alegi intervenții bazate pe „voi salva mereu pacientul”. Alegi intervenții bazate pe „<strong>această procedură are cel mai bun EV pentru pacient</strong>” - chiar dacă uneori pierzi.</p>
+
+<div class="highlight-box">
+<strong>🧮 FORMULA EV:</strong><br><br>
+
+<strong>EV = (Probabilitate de Win × Profit la Win) - (Probabilitate de Loss × Pierdere la Loss)</strong><br><br>
+
+<strong>Interpretare:</strong><br>
+• EV > 0 = Trade pozitiv pe termen lung (joci!)<br>
+• EV = 0 = Trade neutru (nu merită riscul)<br>
+• EV < 0 = Trade negativ (eviți!)<br><br>
+
+<strong>Important:</strong> Un trade cu EV pozitiv poate pierde individual. Un trade cu EV negativ poate câștiga individual. <strong>EV funcționează doar pe serii de trades!</strong>
+</div>
+
+<h4>📊 Calcule EV Practice:</h4>
+
+<div class="example-trade win">
+<h4>📗 EXEMPLU 1: Trade cu Win Rate Mic dar EV Pozitiv</h4>
+<p><strong>Setup:</strong> Breakout trading cu R:R 1:3</p>
+<p><strong>Analiză istorică:</strong> Acest pattern câștigă doar 35% din timp</p><br>
+
+<p><strong>Calcule pentru 100 trades la $100 risk fiecare:</strong></p>
+<p>35 winners × $300 = +$10,500</p>
+<p>65 losers × $100 = -$6,500</p>
+<p><strong>EV per trade: ($10,500 - $6,500) ÷ 100 = +$40</strong></p><br>
+
+<p><strong>Concluzie:</strong> Chiar dacă pierzi 65% din trades, faci bani! Fiecare trade are EV +$40.</p>
+</div>
+
+<div class="example-trade loss">
+<h4>📕 EXEMPLU 2: Trade cu Win Rate Mare dar EV Negativ</h4>
+<p><strong>Setup:</strong> Scalping rapid cu R:R 1:0.8</p>
+<p><strong>Analiză:</strong> Câștigi 60% din timp (pare bun!)</p><br>
+
+<p><strong>Calcule pentru 100 trades la $100 risk fiecare:</strong></p>
+<p>60 winners × $80 = +$4,800</p>
+<p>40 losers × $100 = -$4,000</p>
+<p><strong>EV per trade: ($4,800 - $4,000) ÷ 100 = +$8</strong></p><br>
+
+<p><strong>PROBLEMĂ:</strong> Dar cu slippage, comisioane, și impozite? EV real devine <strong>negativ</strong>.</p>
+<p><strong>Concluzie:</strong> Win rate mare nu înseamnă profit dacă R:R e prost.</p>
+</div>
+
+<div class="highlight-box">
+<strong>🎯 EV și Convicție: Combinarea Conceptelor</strong><br><br>
+
+<strong>Setup „A+” cu EV calculat:</strong><br>
+• Probabilitate estimată: 55% (confluență ridicată)<br>
+• R:R target: 1:2.5<br>
+• Risk: $200 (2% din $10k)<br><br>
+
+<strong>EV = (0.55 × $500) - (0.45 × $200) = $275 - $90 = +$185 per trade</strong><br><br>
+
+<strong>Setup „B” cu EV calculat:</strong><br>
+• Probabilitate estimată: 40% (confluență medie)<br>
+• R:R target: 1:2<br>
+• Risk: $100 (1% din $10k)<br><br>
+
+<strong>EV = (0.40 × $200) - (0.60 × $100) = $80 - $60 = +$20 per trade</strong><br><br>
+
+<strong>Lecție:</strong> Trade-urile A+ nu doar că riști mai mult, dar au și EV mult mai mare per trade!
+</div>
+
+<h3>🛠️ Pre-Trade Checklist: Protocolul Complet</h3>
+
+<p>Înainte de FIECARE trade, completează acest checklist. <strong>Nu negocia cu tine însăți.</strong></p>
+
+<div class="highlight-box">
+<strong>✅ CHECKLIST PRE-TRADE:</strong><br><br>
+
+☐ <strong>Analiză Setup:</strong> Identificat pattern clar?<br>
+☐ <strong>Entry Price:</strong> Definit exact (nu „pe aici”)<br>
+☐ <strong>Stop Loss:</strong> La nivel care invalidează setup-ul<br>
+☐ <strong>Take Profit:</strong> Minim 1:2 R:R (preferabil 1:2.5+)<br>
+☐ <strong>Calibrare Convicție:</strong> A+, A, B, sau C?<br>
+☐ <strong>Risk %:</strong> 2% / 1.5% / 1% / 0.5% (funcție de calificare)<br>
+☐ <strong>Calcul Poziție:</strong> Câte unități = risk-ul dorit?<br>
+☐ <strong>EV Mental:</strong> „Chiar dacă pierd, acest trade are sens statistic"<br>
+☐ <strong>FOMO Check:</strong> Cumpăr pentru că e setup sau pentru că urcă rapid?<br>
+☐ <strong>Max Loss Zilnic:</strong> Niciun trade nu depășește 3% total pe zi<br>
+</div>
+
+<h3>🎓 Studiu de Caz: Chirurgia Pierderii</h3>
+
+<div class="example-trade loss">
+<h4>📕 CAZ CLINIC: Ce Să NU Faci</h4>
+<p><strong>Context:</strong> Alex a shortat ETH la $3,200 în ianuarie 2024.</p><br>
+
+<p><strong>Eroarea #1:</strong> Nu a avut SL tehnic, doar „mental" la $3,400</p>
+<p><strong>Eroarea #2:</strong> A mărit poziția când a trecut de $3,300 (revenge trading)</p>
+<p><strong>Eroarea #3:</strong> A mutat SL-ul „puțin mai sus" de 3x</p>
+<p><strong>Eroarea #4:</strong> A folosit 15x leverage pentru a „recupera"</p><br>
+
+<p><strong>Rezultat:</strong> ETH a pompat la $3,800. Pierdere: <strong>$50,000</strong></p><br>
+
+<p><strong>Analiză Post-Op Corectă:</strong></p>
+<ul>
+<li>SL-ul tehnic ar fi fost la $3,350 (invalidare pattern)</li>
+<li>Risk 1% = $500, nu $50,000</li>
+<li>Pierdere acceptabilă: -$500</li>
+<li>Pierdere reală: -$50,000 (100x mai mult!)</li>
+</ul><br>
+
+<p><strong>Leçon:</strong> Chirurgia necesită decuplare emoțională. Nu poți „negocia" cu sângerarea.</p>
+</div>
+
+<h3>⚠️ Anti-Pattern-uri Mortale</h3>
+
+<div class="warning-box">
+<strong>🚫 CELE 7 PĂCATE CAPITALĂ:</strong><br><br>
+
+<strong>1. Fără Stop Loss</strong> = Operație fără plan de contingență. Sinucidere.<br><br>
+
+<strong>2. Mutarea SL Când Pierzi</strong> = Extinzând o operație eșuată. Vei muri lent.<br><br>
+
+<strong>3. Mărirea Poziției Când Pierzi</strong> = Martingale. Cel mai rapid drum la 0.<br><br>
+
+<strong>4. Risk Prea Mare „De Data Asta"</strong> = „Sunt sigură" sunt cele mai scumpe cuvinte.<br><br>
+
+<strong>5. Nu Închizi La TP</strong> = Greed. A lua profit e o abilitate.<br><br>
+
+<strong>6. Trading După 3 Loss-uri</strong> = Efectul tilt. Emoțiile conduc, nu logica.<br><br>
+
+<strong>7. Nu Ții Jurnal</strong> = Operând orb. Nu înveți din greșeli.
+</div>
+
+<h3>📈 Excelența în Risk Management: Nivelul Următor</h3>
+
+<p>Odată ce stăpânești bazele, iată concepte avansate:</p>
+
+<h4>🔄 Trailing Stop - Protejând Profitul</h4>
+<p>Când trade-ul merge în favoarea ta, mută SL-ul pentru a bloca profit:</p>
+<ul>
+<li>La +1R: Mută SL la entry (breakeven)</li>
+<li>La +2R: Mută SL la +1R (profit garantat)</li>
+<li>La +3R: Trail cu 20-30% distanță față de ATH</li>
+</ul>
+
+<h4>📊 Risk de Ruină (RoR)</h4>
+<p>Probabilitatea de a-ți pierde tot capitalul dată fiind win rate și R:R:</p>
+<ul>
+<li>50% WR, 1:2 R:R, 2% risk = RoR ~0.1% (aproape imposibil)</li>
+<li>40% WR, 1:1 R:R, 5% risk = RoR >50% (vei pierde tot)</li>
+</ul>
+
+<h4>🎯 Sizing Dinamic bazat pe Streak</h4>
+<p>Reduce risk-ul după pierderi consecutive (efectul recensiunii):</p>
+<ul>
+<li>0 losses: Risk normal (1-2%)</li>
+<li>2 losses: Reduce la 0.75%</li>
+<li>3 losses: Pauză sau 0.5% max</li>
+<li>4+ losses: Stop trading pentru ziua respectivă</li>
+</ul>
+
+<div class="highlight-box" style="margin-top: 40px;">
+<strong>🎓 SUMARUL LECȚIEI:</strong><br><br>
+
+1. <strong>Supraviețuirea > Profitul</strong> - Capitalul păstrat este capital care poate crește<br><br>
+
+2. <strong>1-2% Risk Per Trade</strong> - Non-negociabil, indiferent de convicție<br><br>
+
+3. <strong>Size bazat pe SL, nu pe sentiment</strong> - Calculează întâi, cumpără după<br><br>
+
+4. <strong>Convicție = Calibrare Risc</strong> - A+ (2%), A (1.5%), B (1%), C (0.5%)<br><br>
+
+5. <strong>EV > Win Rate</strong> - Un trade cu 40% win rate și 1:3 R:R e mai bun decât 60% cu 1:1<br><br>
+
+6. <strong>Checklist pre-trade obligatoriu</strong> - Nu negocia cu emoțiile<br><br>
+
+7. <strong>Jurnalul este Biblia ta</strong> - Fără date, nu poți îmbunătăți<br><br>
+
+<em>"Un trader bun cunoaște strategia. Un trader excelent cunoaște risk management-ul."</em>
+</div>
+`,quiz:{question:["Capital $20,000, risk 1%, entry BTC $60,000, SL $58,000. Cât BTC poți cumpăra?","Setup A+ cu probabilitate 50% și R:R 1:3, risk $200. Care este EV per trade?","După 3 losing trades consecutive, ce faci?","Care este Risk of Ruin cel mai sigur?","Când poți mări risk-ul la 2%?"],options:[["0.1 BTC","0.05 BTC","1 BTC","0.01 BTC"],["+$100","+$200","-$50","+$400"],["Mărești poziția să recuperezi","Pauză sau reduci risk","Schimbi strategia","Tradezi cu 5% risk"],["40% WR, 1:2 R:R, 1% risk","50% WR, 1:1 R:R, 5% risk","30% WR, 1:4 R:R, 3% risk","60% WR, 1:0.8 R:R, 2% risk"],["Când ai feeling puternic","Setup A+ cu 4+ factori confluență","După un win mare","În weekend când ești odihnită"]],correct:[0,0,1,0,1]}},,
 {id:6,title:"Risk Management #2 + Leverage",shortTitle:"Leverage",content:`
 <h2>⚡ Leverage: Cuțit cu Două Tăișuri</h2>
 <div class="highlight-box">Fără leverage: $1,000 în BTC, +10% = $100 profit<br>Cu 10x: $1,000 controlează $10k, +10% = $1,000 profit (100%)</div>
