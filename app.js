@@ -5,7 +5,7 @@ const navEl=document.getElementById('lessonNav'),contentEl=document.getElementBy
 const DISCORD_WEBHOOK='https://discord.com/api/webhooks/1471215105503920153/nsbwhEQOTKVHF1NOvCK6nErAgh95gacaJqhVYIBY2u3s-D5J2Ozu5XWgDYCpFHnIEWzO';
 
 // Capitole blocate - doar primul e deschis
-const UNLOCKED_LESSONS=[1,2,3,4];
+const UNLOCKED_LESSONS=[1,2,3,4,5];
 
 function init(){renderNav();load(current);updateP();}
 
